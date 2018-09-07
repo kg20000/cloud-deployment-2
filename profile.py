@@ -54,11 +54,17 @@ link.addInterface(iface2)
 link.addInterface(iface3)
 link.addInterface(iface4)
 
-#Only set an IP for the first node
+#Only set a IP
 node1.routable_control_ip = "true"
+node2.routable_control_ip = "true"
+node3.routable_control_ip = "true"
+node4.routable_control_ip = "true"
 
 # Install and execute a script that is contained in the repository.
 node1.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
+node2.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
+node3.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
+node4.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
