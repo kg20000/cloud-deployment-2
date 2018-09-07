@@ -19,31 +19,31 @@ request = pc.makeRequestRSpec()
  
 # Add a raw PC to the request.
 # Create four nodes
-node-1 = request.XenVM("node1")
-node-2 = request.XenVM("node2")
-node-3 = request.XenVM("node3")
-node-4 = request.XenVM("node4")
+node1 = request.XenVM("node-1")
+node2 = request.XenVM("node-2")
+node3 = request.XenVM("node-3")
+node4 = request.XenVM("node-4")
 
 #Set the disk image to CENTOS for each node
-node-1.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
-node-2.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
-node-3.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
-node-4.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+node1.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+node2.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+node3.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
+node4.disk_image = "urn:publicid:IDN+emulab.net+image+emulab-ops:CENTOS7-64-STD"
 
 #Set specific IP Address for each node
-iface1 = node-1.addInterface("if1")
+iface1 = node1.addInterface("if1")
 iface1.component_id = "eth1"
 iface1.addAddress(rspec.IPv4Address("192.168.1.1", "255.255.255.0"))
 
-iface2 = node-2.addInterface("if2")
+iface2 = node2.addInterface("if2")
 iface2.component_id = "eth2"
 iface2.addAddress(rspec.IPv4Address("192.168.1.2", "255.255.255.0"))
 
-iface3 = node-3.addInterface("if3")
+iface3 = node3.addInterface("if3")
 iface3.component_id = "eth3"
 iface3.addAddress(rspec.IPv4Address("192.168.1.3", "255.255.255.0"))
 
-iface4 = node-4.addInterface("if4")
+iface4 = node4.addInterface("if4")
 iface4.component_id = "eth4"
 iface4.addAddress(rspec.IPv4Address("192.168.1.4", "255.255.255.0"))
 
@@ -55,10 +55,10 @@ link.addInterface(iface3)
 link.addInterface(iface4)
 
 #Only set an IP for the first node
-node-1.routable_control_ip = "true"
+node1.routable_control_ip = "true"
 
 # Install and execute a script that is contained in the repository.
-node-1.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
+node1.addService(pg.Execute(shell="sh", command="/local/repository/silly.sh"))
 
 # Print the RSpec to the enclosing page.
 pc.printRequestRSpec(request)
